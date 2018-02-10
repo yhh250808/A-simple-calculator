@@ -14,7 +14,7 @@ public:
 	int NiTransPost(vector<int> expa, vector<int> &expb);
 };
 
-int Expression::expressionChange(string exp, vector<int> &expa)//string×ª»»
+int Expression::expressionChange(string exp, vector<int> &expa)//stringè½¬æ¢
 {
 	int n = 0;
 	for (int i = 0; i < exp.length(); i++) {
@@ -126,7 +126,7 @@ int Expression::NiTransPost(vector<int> expa, vector<int> &expb)
 class ExpressionCalculate:public Expression
 {
 public:
-	vector<int> expa;//ÕıÊı±íÊ¾Êı£¬¸ºÊı±íÊ¾·ûºÅ
+	vector<int> expa;//æ­£æ•°è¡¨ç¤ºæ•°ï¼Œè´Ÿæ•°è¡¨ç¤ºç¬¦å·
 	ExpressionCalculate(){}
 	~ExpressionCalculate() {}
 	int calculate();
@@ -184,14 +184,14 @@ int ExpressionJudge::Judge()
 	string exp = InputData;
 	for (int i = 0; i < exp.length(); i++) {
 		int expvalue = (int)exp[i];
-		if ((expvalue < 48 || expvalue>57) && expvalue != 43 && expvalue != 42 && expvalue != 45 && expvalue != 47 && expvalue != 40 && expvalue != 41)//³öÏÖ·Ç·¨×Ö·û
+		if ((expvalue < 48 || expvalue>57) && expvalue != 43 && expvalue != 42 && expvalue != 45 && expvalue != 47 && expvalue != 40 && expvalue != 41)//å‡ºç°éæ³•å­—ç¬¦
 		{
 			cout << Warning << endl;
 			Expression::JudValue = 0;
 			return 0;
 		}
 
-		if (expvalue == 42 || expvalue == 43 || expvalue == 45 || expvalue == 47 || expvalue == 40 || expvalue == 41) {//Êı×ÖÌ«´ó
+		if (expvalue == 42 || expvalue == 43 || expvalue == 45 || expvalue == 47 || expvalue == 40 || expvalue == 41) {//æ•°å­—å¤ªå¤§
 			if ((i - TheLastOperatorPost) > 9) {
 				cout << Warning << endl;
 				Expression::JudValue = 0;
@@ -201,20 +201,20 @@ int ExpressionJudge::Judge()
 		}
 
 		if (expvalue == 40) {
-			if (i == exp.length() - 1) {//±í´ïÊ½Ä©Î²Îª×óÀ¨ºÅ
+			if (i == exp.length() - 1) {//è¡¨è¾¾å¼æœ«å°¾ä¸ºå·¦æ‹¬å·
 				cout << Warning << endl;
 				Expression::JudValue = 0;
 				return 0;
 			}
 			int NextExpValue = (int)exp[i + 1];
-			if (NextExpValue == 42 || NextExpValue == 43 || NextExpValue == 45 || NextExpValue == 47) {//×óÀ¨ºÅÓÒ±ßÎªÔËËã·û
+			if (NextExpValue == 42 || NextExpValue == 43 || NextExpValue == 45 || NextExpValue == 47) {//å·¦æ‹¬å·å³è¾¹ä¸ºè¿ç®—ç¬¦
 				cout << Warning << endl;
 				Expression::JudValue = 0;
 				return 0;
 			}
 			if (i != 0) {
 				int BeforeExpValue = (int)exp[i-1];
-				if (BeforeExpValue != 42 && BeforeExpValue != 43 && BeforeExpValue != 45 && BeforeExpValue != 47) {//×óÀ¨ºÅ×ó±ß²»ÊÇÔËËã·û
+				if (BeforeExpValue != 42 && BeforeExpValue != 43 && BeforeExpValue != 45 && BeforeExpValue != 47) {//å·¦æ‹¬å·å·¦è¾¹ä¸æ˜¯è¿ç®—ç¬¦
 					cout << Warning << endl;
 					Expression::JudValue = 0;
 					return 0;
@@ -224,20 +224,20 @@ int ExpressionJudge::Judge()
 		}
 		
 		if (expvalue == 41) {
-			if (i == 0) {//ÓÒÀ¨ºÅÔÚ¿ªÍ·
+			if (i == 0) {//å³æ‹¬å·åœ¨å¼€å¤´
 				cout << Warning << endl;
 				Expression::JudValue = 0;
 				return 0;
 			}
 			int BeforeExpValue = (int)exp[i - 1];
-			if (BeforeExpValue == 42 || BeforeExpValue == 43 || BeforeExpValue == 45 || BeforeExpValue == 47) {//ÓÒÀ¨ºÅ×ó±ßÎªÔËËã·û
+			if (BeforeExpValue == 42 || BeforeExpValue == 43 || BeforeExpValue == 45 || BeforeExpValue == 47) {//å³æ‹¬å·å·¦è¾¹ä¸ºè¿ç®—ç¬¦
 				cout << Warning << endl;
 				Expression::JudValue = 0;
 				return 0;
 			}
 			int NextExpValue = exp[i+1];
 			if (i != exp.length() - 1) {
-				if (NextExpValue != 42 && NextExpValue != 43 && NextExpValue != 45 && NextExpValue != 47) {//ÓÒÀ¨ºÅÓÒ±ß²»ÊÇÔËËã·û
+				if (NextExpValue != 42 && NextExpValue != 43 && NextExpValue != 45 && NextExpValue != 47) {//å³æ‹¬å·å³è¾¹ä¸æ˜¯è¿ç®—ç¬¦
 					cout << Warning << endl;
 					Expression::JudValue = 0;
 					return 0;
@@ -248,7 +248,7 @@ int ExpressionJudge::Judge()
 
 		
 	}
-	if (numofleft != numofright) {//×óÀ¨ºÅÊıÓëÓÒÀ¨ºÅÊı²»ÏàµÈ
+	if (numofleft != numofright) {//å·¦æ‹¬å·æ•°ä¸å³æ‹¬å·æ•°ä¸ç›¸ç­‰
 		cout << Warning << endl;
 		Expression::JudValue = 0;
 		return 0;
@@ -256,14 +256,14 @@ int ExpressionJudge::Judge()
 
 	int expvalue;
 	expvalue = (int)exp[0];
-	if (expvalue == 42 || expvalue == 43 || expvalue == 45 || expvalue == 47) {//ÔËËã·û¿ªÍ·
+	if (expvalue == 42 || expvalue == 43 || expvalue == 45 || expvalue == 47) {//è¿ç®—ç¬¦å¼€å¤´
 		cout << Warning << endl;
 		Expression::JudValue = 0;
 		return 0;
 	}
 
 	expvalue = (int)exp[exp.length() - 1];
-	if (expvalue == 42 || expvalue  == 43 || expvalue == 45 || expvalue == 47) {//ÔËËã·û½áÎ²
+	if (expvalue == 42 || expvalue  == 43 || expvalue == 45 || expvalue == 47) {//è¿ç®—ç¬¦ç»“å°¾
 		cout << Warning << endl;
 		Expression::JudValue = 0;
 		return 0;
