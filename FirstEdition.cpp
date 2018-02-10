@@ -1,3 +1,5 @@
+//只能进行正整数运算（被减数不小于减数）
+//除法精确到个位
 #include<iostream>
 #include<string>
 #include<vector>
